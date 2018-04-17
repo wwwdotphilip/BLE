@@ -303,9 +303,8 @@ public class BluetoothLeService extends Service {
         }
         /*get the read characteristic from the service*/
 
-        byte[] val = new byte[2];
-        val[0] = 0x10;
-        val[1] = (byte) value;
+        byte[] val = new byte[1];
+        val[0] = (byte) value;
 
         BluetoothGattCharacteristic mWriteCharacteristic = mCustomService.getCharacteristic(UUID.fromString(ch));
 //        mWriteCharacteristic.setValue(value, BluetoothGattCharacteristic.FORMAT_UINT16,0);
