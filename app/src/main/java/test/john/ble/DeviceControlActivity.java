@@ -147,7 +147,7 @@ public class DeviceControlActivity extends Activity {
 
     private void clearUI() {
         //mGattServicesList.setAdapter((SimpleExpandableListAdapter) null);
-        mDataField.setText(R.string.no_data);
+//        mDataField.setText(R.string.no_data);
     }
 
     @Override
@@ -267,7 +267,7 @@ public class DeviceControlActivity extends Activity {
                         if (ch.getUuid().toString().equalsIgnoreCase("0000fd0a-0000-1000-8000-00805f9b34fb")){
                             int chProp = ch.getProperties();
                             Log.v(TAG, "CH properties "+chProp);
-                            mBluetoothLeService.writeCharacteristics(0xA20401A7, item.getUuid().toString(), ch.getUuid().toString());
+                            mBluetoothLeService.writeCharacteristics(new byte[]{(byte) 0xA2, 0x04, 0x01, (byte) 0xA7}, item.getUuid().toString(), ch.getUuid().toString());
                             break;
                         }
                     }

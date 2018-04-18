@@ -290,7 +290,7 @@ public class BluetoothLeService extends Service {
         }
     }
 
-    public void writeCharacteristics(int value, String service, String ch){
+    public void writeCharacteristics(byte[] value, String service, String ch){
         if (mBluetoothAdapter == null || mBluetoothGatt == null) {
             Log.w(TAG, "BluetoothAdapter not initialized");
             return;
@@ -303,12 +303,9 @@ public class BluetoothLeService extends Service {
         }
         /*get the read characteristic from the service*/
 
-        byte[] val = new byte[1];
-        val[0] = (byte) value;
-
         BluetoothGattCharacteristic mWriteCharacteristic = mCustomService.getCharacteristic(UUID.fromString(ch));
 //        mWriteCharacteristic.setValue(value, BluetoothGattCharacteristic.FORMAT_UINT16,0);
-        mWriteCharacteristic.setValue(val);
+        mWriteCharacteristic.setValue(value);
         if(!mBluetoothGatt.writeCharacteristic(mWriteCharacteristic)){
             Log.w(TAG, "Failed to write characteristic");
         }
