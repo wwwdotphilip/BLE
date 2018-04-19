@@ -16,25 +16,19 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
-        <activity android:name=".MainActivity" />
-        <activity
-            android:name=".DeviceScanActivity"
-            android:label="@string/app_name">
+
+        <service
+            android:name=".BluetoothLeService"
+            android:enabled="true" />
+        <service android:name=".DfuService" />
+
+        <activity android:name=".AutoUpgradeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DeviceControlActivity" />
-
-        <service
-            android:name=".BluetoothLeService"
-            android:enabled="true" />
-
-        <service android:name=".DfuService" />
-
-        <activity android:name=".OTAActivity"></activity>
     </application>
 
 </manifest>

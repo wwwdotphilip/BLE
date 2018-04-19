@@ -36,6 +36,4 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation project(':ble')
     implementation 'no.nordicsemi.android:dfu:1.6.1'
-    implementation 'com.github.codekidX:storage-chooser:2.0.3'
-    implementation 'com.nbsp:library:1.8'
 }

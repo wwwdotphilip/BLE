@@ -74,7 +74,7 @@ public class BluetoothLeService extends Service {
                 broadcastUpdate(intentAction);
                 Log.i(TAG, "Connected to GATT server.");
                 // Attempts to discover services after successful connection.
-                Log.i(TAG, "Attempting to start service discovery:" +
+                Log.i(TAG, "Attempting to start service discovery: " +
                         mBluetoothGatt.discoverServices());
 
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
@@ -87,6 +87,7 @@ public class BluetoothLeService extends Service {
 
         @Override
         public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+            Log.w(TAG, "Service: " + gatt.getServices());
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 broadcastUpdate(ACTION_GATT_SERVICES_DISCOVERED);
             } else {
@@ -101,12 +102,17 @@ public class BluetoothLeService extends Service {
             if (status == BluetoothGatt.GATT_SUCCESS) {
 
             }
+            Log.v(TAG, "onCharacteristicRead is called");
+            Log.v(TAG, characteristic.getUuid().toString() + " " +
+                    characteristic.getStringValue(0));
         }
 
         @Override
         public void onCharacteristicChanged(BluetoothGatt gatt,
                                             BluetoothGattCharacteristic characteristic) {
-
+            Log.v(TAG, "onCharacteristicChanged is called");
+            Log.v(TAG, characteristic.getUuid().toString() + " " +
+                    characteristic.getStringValue(0));
         }
     };
 
@@ -242,6 +248,7 @@ public class BluetoothLeService extends Service {
             Log.w(TAG, "BluetoothAdapter not initialized");
             return;
         }
+        Log.w(TAG, "Reading characteristic of " + characteristic.getUuid());
         mBluetoothGatt.readCharacteristic(characteristic);
     }
 
